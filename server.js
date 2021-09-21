@@ -73,6 +73,7 @@ wsServer.on('connection', (ws, req) => {
         const index = CLIENTS.findIndex((elem) => elem === ws);
         usersArr.splice(index, 1);
         CLIENTS.splice(index, 1);
+        response = usersArr;
       }
       else {
         CLIENTS.push(ws);
