@@ -69,7 +69,11 @@ wsServer.on('connection', (ws, req) => {
 
     if (request.login) {
       const userLogged = usersArr.some((user) => user.name === request.login);
-      if (userLogged) response = false;
+      if (userLogged) {
+        const index = CLIENTS.findIndex((elem) => elem === ws);
+        usersArr.splice(index, 1);
+        CLIENTS.splice(index, 1);
+      }
       else {
         CLIENTS.push(ws);
         const userId = CLIENTS.findIndex((elem) => elem === ws);
